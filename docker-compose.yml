@@ -1,19 +1,13 @@
 version: '3.8'
 services:
   python-script:
-    container_name: subitosearcher
+    container_name: subitosearchertelegrambot
     build: 
       context: .
       network: host  # <--- Fondamentale: permette al Dockerfile di scaricare pacchetti
     restart: unless-stopped
     network_mode: "host" # Mantiene la rete host anche durante l'esecuzione
-    ports:
-      - "5000:5000" # Flask port
     volumes: # source:destination # ./ relative / absolute
-    #  - /portainer/Files/AppData/Config/Subito:/subito # for my portainer config
-    # ok working old - .:/portainer/Files/AppData/Config/subito # for my portainer config
       - type: bind
-        # source: /portainer/Files/AppData/Config/Subito  # <host_path>
-        source: /DATA/AppData/subitosearcher  # <host_path>
-        target: /app     # <container_path>    
-
+        source: /DATA/AppData/subitosearchertelegrambot  # <host_path> suitable for CasaOS
+        target: /app     # <container_path>
